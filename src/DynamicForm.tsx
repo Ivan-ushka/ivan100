@@ -10,6 +10,10 @@ const DynamicForm = () => {
     const [isLoad, setIsLoad] = useState<boolean>(false);
     const [isConfirm, setConfirm] = useState<boolean>(false);
 
+    const validInp = () => {
+        if(inp >= 0 && text >= 0 && check >= 0) setIsLoad(true);
+    };
+
     return (
         <>
             {!isLoad ?
@@ -20,6 +24,7 @@ const DynamicForm = () => {
                                 <Form.Label>Input:</Form.Label>
                                 <Form.Control type="number"
                                               placeholder="count"
+                                              min={0}
                                               onChange={(e) => setInp(Number(e.target.value))}
                                 />
                             </Form.Group>
@@ -27,6 +32,7 @@ const DynamicForm = () => {
                             <Form.Group className="mb-3 " controlId="text">
                                 <Form.Label>Textarea:</Form.Label>
                                 <Form.Control type="number"
+                                              min={0}
                                               placeholder="count"
                                               onChange={(e) => setText(Number(e.target.value))}
                                 />
@@ -35,12 +41,14 @@ const DynamicForm = () => {
                             <Form.Group className="mb-3" controlId="check">
                                 <Form.Label>Checkbox:</Form.Label>
                                 <Form.Control type="number"
+                                              min={0}
                                               placeholder="count"
                                               onChange={(e) => setCheck(Number(e.target.value))}
                                 />
                             </Form.Group>
                         </Form>
-                        <Button onClick={() => setIsLoad(true)}>Build</Button>
+                        {!isLoad && <p>Count should be &gt;= 0</p>}
+                        <Button onClick={() => validInp()}>Build</Button>
                     </Container>
                 ) : (
                     <Container className="d-flex align-items-center justify-content-center p-4 flex-column">
