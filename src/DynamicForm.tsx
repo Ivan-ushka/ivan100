@@ -72,7 +72,6 @@ const DynamicForm = () => {
                                 <Button onClick={() => setConfirm(true)} className="m-1">Confirm</Button>
                             </div>
                         }
-
                     </Container>
                 )
             }
